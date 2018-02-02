@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
  const Comment = (props) => {
 
@@ -14,6 +15,14 @@ import React from 'react';
             </div>
         )
 
+
+}
+
+Comment.propTypes = {
+    comment: PropTypes.shape({
+        user: PropTypes.string,
+        text: PropTypes.string
+    }).isRequired
 
 }
 
