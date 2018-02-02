@@ -10,7 +10,11 @@ import toggleOpen from '../decorators/toggleOpen';
             id: PropTypes.string.isRequired,
             title: PropTypes.string.isRequired,
             text: PropTypes.string
-        }).isRequired
+        }).isRequired,
+        isOpen: PropTypes.bool.isRequired,
+        toggleOpen: PropTypes.func.isRequired,
+        isCommentsOpen: PropTypes.bool.isRequired,
+        toggleComments: PropTypes.func.isRequired
     }
 
 
