@@ -16,7 +16,7 @@ class UserForm extends Component {
 
     render() {
         return (
-            <div>Name: <input type = 'text' value={this.state.username} onChange={this.onChange}/></div>
+            <div className="UserForm">Name: <input type = 'text' value={this.state.username} onChange={this.onChange}/></div>
         );
     }
 }

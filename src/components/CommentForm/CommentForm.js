@@ -50,7 +50,7 @@ class CommentForm extends Component {
                         name="text" value={this.state.text}
                         onChange={this.onChange('text')}
                         className={this.getClassName('text')}/><br />
-                    <button>Add comment</button>
+                    <button className="custom_btn">Add comment</button>
                 </form>
 
             </div>

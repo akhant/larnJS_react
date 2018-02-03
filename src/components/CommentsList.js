@@ -24,7 +24,7 @@ class CommentsList extends React.Component  {
                 <ul>
                     {commentElements}
                 </ul>
-            <button onClick={this.openCommentForm}>{this.state.commentFormIsOpen ? 'Close': 'Add new comment'}</button>
+            <button className="custom_btn" onClick={this.openCommentForm}>{this.state.commentFormIsOpen ? 'Close': 'Add new comment'}</button>
                 {this.state.commentFormIsOpen && <CommentForm /> }
             </div>
 

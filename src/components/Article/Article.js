@@ -8,7 +8,7 @@ import {connect } from 'react-redux';
 import {deleteArticle} from "../../AC"
 
  class Article extends PureComponent {
-    static propTypes = {
+     static propTypes = {
         //from ArticleList
         article: PropTypes.shape({
             id: PropTypes.string.isRequired,
@@ -17,19 +17,18 @@ import {deleteArticle} from "../../AC"
         }).isRequired,
         //from connect
         deleteArticle: PropTypes.func
-    }
+    };
 
-     state ={
+     state = {
          updateIndex: 0
-     }
+     };
 
      handleDelete = () => {
          const { article, deleteArticle} = this.props;
          deleteArticle(article.id)
-         console.log(article.id)
 
-     }
 
+     };
 
 render(){
     const {article, isOpen, toggleOpen, isCommentsOpen,toggleComments } = this.props;
@@ -37,8 +36,8 @@ render(){
         <div>
 
             <h3>{article.title}</h3>
-            <button onClick={ toggleOpen }>{isOpen ? 'close' : 'open'}</button>
-            <button onClick={this.handleDelete}>delete article</button>
+            <button className='custom_btn' onClick={ toggleOpen }>{isOpen ? 'close' : 'open'}</button>
+            <button className='custom_btn' onClick={this.handleDelete}>delete article</button>
             <ReactCSSTransitionGroup transitionName="article"
                                      transitionEnterTimeout={300}
                                      transitionLeaveTimeout={300}
@@ -47,7 +46,7 @@ render(){
 
             {isOpen && (
                 <div>
-                    <button  onClick={ toggleComments }>{isCommentsOpen ? 'Hide comments' : 'Show comments'}</button>
+                    <button  className='custom_btn' onClick={ toggleComments }>{isCommentsOpen ? 'Hide comments' : 'Show comments'}</button>
 
                     {isCommentsOpen && (
                         <div>
