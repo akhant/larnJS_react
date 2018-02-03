@@ -8,7 +8,7 @@ import 'react-dates/initialize';
 import { DateRangePicker} from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-
+import Counter from './Counter';
 
 
 export default class App extends Component{
@@ -21,12 +21,13 @@ state = {
         })
     }
     render(){
-        const options = this.props.articles.map(article => ({
+        const options = articles.map(article => ({
             label: article.title,
             value: article.id
         }))
         return (
             <div>
+                <Counter />
                 <DateRangePicker
                     startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                     startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
@@ -38,7 +39,7 @@ state = {
                 />
                 <UserForm />
                 <Select  options={options} onChange={this.changeSelection} value={this.state.selection} />
-                <ArticleList articles = {articles} />
+                <ArticleList  />
 
             </div>
         )

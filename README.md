@@ -1,5 +1,4 @@
-lesson 3
-add form for adding new comment
-form validation
-add Calendar
-use css
+lesson 4
+add redux
+done counter
+done delete article

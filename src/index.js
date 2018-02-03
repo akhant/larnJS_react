@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import App from './components/App';
-import { articles } from './fixtures';
+import Root from './components/Root';
 
-ReactDOM.render(<App articles = {articles}/>, document.getElementById('root'));
+
+
+ReactDOM.render(<Root />, document.getElementById('root'));
 registerServiceWorker();
