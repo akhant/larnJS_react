@@ -1,4 +1,3 @@
-import {articles as defaultArticles} from '../fixtures'
 import {DELETE_ARTICLE, CHANGE_SELECTION, CHANGE_DATE_RANGE} from '../constants'
 const defaultFilters = {
     selected: [],

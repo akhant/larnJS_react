@@ -17,7 +17,7 @@ class CommentsList extends React.Component  {
     render (){
         const { comments} = this.props;
         let commentElements;
-        if (comments) { commentElements = comments.map((comment) => <li key={comment.id}><Comment comment = {comment} /></li>)}
+        if (comments) { commentElements = comments.map((id) => <li key={id}><Comment id = {id} /></li>)}
         else { commentElements = <p>No comments yet</p>}
 
         return (<div>

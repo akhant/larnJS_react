@@ -51,7 +51,13 @@ class Filters extends Component {
     }
 }
 
-Filters.propTypes = {};
+Filters.propTypes = {
+    articles: PropTypes.array.isRequired,
+    changeDateRange: PropTypes.func.isRequired,
+    range: PropTypes.object.isRequired
+
+
+};
 Filters.defaultProps = {};
 
 export default connect(state => ({

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect } from 'react-redux';
+import {commentSelectorFactory} from '../selectors';
 
- const Comment = (props) => {
-
-        const {comment} = props;
+ const Comment = ({comment}) => {
         return (
             <div>
                 <h4>Пользователь: {comment.user}</h4>
@@ -13,10 +13,23 @@ import PropTypes from 'prop-types';
 }
 
 Comment.propTypes = {
-    comment: PropTypes.shape({
+        comment: PropTypes.shape({
         user: PropTypes.string,
         text: PropTypes.string
-    }).isRequired
+    }).isRequired,
+    //from ArticleList
+    id: PropTypes.string.isRequired,
+
 }
 
-export default Comment;
+const mapStateToProps = () => {
+    const commentSelector = commentSelectorFactory();
+
+    return (state, ownProps) => {
+        return {
+            comment: commentSelector(state, ownProps)
+        }
+    }
+}
+
+export default connect(mapStateToProps)(Comment);
