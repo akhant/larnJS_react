@@ -14,6 +14,7 @@ import {commentSelectorFactory} from '../selectors';
 
 Comment.propTypes = {
         comment: PropTypes.shape({
+        id: PropTypes.string,
         user: PropTypes.string,
         text: PropTypes.string
     }).isRequired

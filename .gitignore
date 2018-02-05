@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /.idea
+/simple_api/node_modules
 
 # testing
 /coverage
