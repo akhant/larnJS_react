@@ -4,10 +4,14 @@ import accordion from '../decorators/accordion';
 import PropTypes from 'prop-types';
 import {connect } from 'react-redux';
 import { filtratedArticlesSelector } from '../selectors';
+import {loadAllArticles} from '../AC'
 
 
 
 class ArticleList extends React.Component {
+    componentDidMount(){
+        this.props.loadAllArticles();
+    }
    render(){
         const {articles, openItemId, toggleOpenItem} = this.props;
         const articleElements = articles.map( article =>  <li key={article.id}>
@@ -41,4 +45,4 @@ export default connect((state) => {
     return {
         articles: filtratedArticlesSelector(state)
     }
-})(accordion(ArticleList));
+}, {loadAllArticles})(accordion(ArticleList));
