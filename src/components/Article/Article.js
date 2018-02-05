@@ -16,7 +16,14 @@ import {deleteArticle} from "../../AC"
             text: PropTypes.string
         }).isRequired,
         //from connect
-        deleteArticle: PropTypes.func
+        deleteArticle: PropTypes.func,
+         //from toggleOpen
+         isCommentsOpen: PropTypes.bool.isRequired,
+         toggleComments: PropTypes.func.isRequired,
+         //from ArticleList
+         isOpen: PropTypes.bool.isRequired,
+         toggleOpen: PropTypes.func.isRequired
+
     };
 
      state = {
@@ -51,7 +58,7 @@ render(){
                     {isCommentsOpen && (
                         <div>
                         <h3>Комментарии: </h3>
-                        <CommentsList comments={article.comments}  />
+                        <CommentsList article={article}  />
                         </div>
                     ) }
 

@@ -1,36 +1,31 @@
 import React from 'react';
 import Comment from './Comment';
 import CommentForm from './CommentForm/CommentForm';
+import PropTypes from 'prop-types';
 
-class CommentsList extends React.Component  {
+function CommentsList({article}) {
 
-    state= {
-        commentFormIsOpen: false
-        }
-
-    openCommentForm = () => {
-        this.setState({
-            commentFormIsOpen: !this.state.commentFormIsOpen
-        })
+return (
+    <div>
+        {getBody({article})}
+    </div>
+)
     }
 
-    render (){
-        const { comments} = this.props;
-        let commentElements;
-        if (comments) { commentElements = comments.map((id) => <li key={id}><Comment id = {id} /></li>)}
-        else { commentElements = <p>No comments yet</p>}
+function getBody({article: {comments = [], id}}){
+    console.log('comments', comments)
+    return (
+        <div>
+            <ul>
+                {comments.map(newId => <li key={newId} ><Comment id = {newId}/></li>)}
+            </ul>
+            <CommentForm articleId = {id} />
+        </div>
+    )
+}
 
-        return (<div>
-                <ul>
-                    {commentElements}
-                </ul>
-            <button className="custom_btn" onClick={this.openCommentForm}>{this.state.commentFormIsOpen ? 'Close': 'Add new comment'}</button>
-                {this.state.commentFormIsOpen && <CommentForm /> }
-            </div>
-
-        )
-    }
-
-};
+CommentsList.propTypese = {
+    comments: PropTypes.array
+}
 
 export default CommentsList;

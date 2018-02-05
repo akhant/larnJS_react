@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 import {changeSelection} from '../AC';
 import {changeDateRange} from '../AC';
 import {deleteArticle} from "../AC"
+import {mapToArr} from '../helpers';
 
 class Filters extends Component {
 
@@ -61,7 +62,7 @@ Filters.propTypes = {
 Filters.defaultProps = {};
 
 export default connect(state => ({
-    articles: state.articles,
+    articles: mapToArr(state.articles),
     selected: state.filters.selected,
     range: state.filters.dateRange
 }), {changeSelection, changeDateRange, deleteArticle})(Filters);

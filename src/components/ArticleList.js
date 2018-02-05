@@ -31,7 +31,7 @@ class ArticleList extends React.Component {
 
 ArticleList.propTypes = {
     //from connect
-    articles: PropTypes.array.isRequired,
+    /*articles: PropTypes.array.isRequired,*/
     //from decorator accordion
     toggleOpenItem: PropTypes.func.isRequired
 

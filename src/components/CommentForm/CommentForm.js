@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './errors.css'
+import {addComment} from '../../AC';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 class CommentForm extends Component {
     state = {
@@ -7,20 +10,19 @@ class CommentForm extends Component {
         text: ''
     };
 
-    onSubmit = e => {
-        e.preventDefault();
-        this.setState({
-            user: '',
-            text: ''
-        })
+
+    handleSubmit = e => {
+        e.preventDefault()
+       this.props.addCom(this.state)
+
+
     }
 
     getClassName = type => this.state[type].length && (this.state[type].length < this.limits[type].min) ? "error_border" : ''
 
-
     onChange = type => e => {
         const {value} = e.target
-        if (value.length> this.limits[type].max) return;
+        if (value.length > this.limits[type].max) return;
         this.setState({
             [type]: value
         })
@@ -39,7 +41,8 @@ class CommentForm extends Component {
 
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
+                <h2>Add comment:</h2>
+                <form onSubmit={this.handleSubmit}>
                     <label htmlFor="user">Your name:</label><br />
                     <input  name="user"
                             value={this.state.user}
@@ -50,7 +53,7 @@ class CommentForm extends Component {
                         name="text" value={this.state.text}
                         onChange={this.onChange('text')}
                         className={this.getClassName('text')}/><br />
-                    <button className="custom_btn">Add comment</button>
+                    <input type="submit" className="custom_btn" value="submit" />
                 </form>
 
             </div>
@@ -59,7 +62,15 @@ class CommentForm extends Component {
 
 }
 
-CommentForm.propTypes = {};
+CommentForm.propTypes = {
+    //from CommentList
+    articleId: PropTypes.string.isRequired
+};
 CommentForm.defaultProps = {};
 
-export default CommentForm;
+export default connect(null, (dispatch, ownProps) => {
+        return {
+            addCom: (comment) =>dispatch(addComment(comment, ownProps.articleId))
+        }
+    }
+)(CommentForm);

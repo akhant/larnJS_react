@@ -16,9 +16,8 @@ Comment.propTypes = {
         comment: PropTypes.shape({
         user: PropTypes.string,
         text: PropTypes.string
-    }).isRequired,
-    //from ArticleList
-    id: PropTypes.string.isRequired,
+    }).isRequired
+
 
 }
 
