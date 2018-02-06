@@ -5,7 +5,7 @@ export default store => next => action => {
     const {callAPI, type, ...rest} = action
     if (!callAPI) return next(action);
 
-    next({...rest, type: type+START})
+    next({...rest, type: type + START})
 
 setTimeout(() => {
     fetch(callAPI)

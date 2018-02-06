@@ -3,29 +3,40 @@ import Comment from './Comment';
 import CommentForm from './CommentForm/CommentForm';
 import PropTypes from 'prop-types';
 
-function CommentsList({article}) {
+class CommentsList extends React.Component  {
 
-return (
-    <div>
-        {getBody({article})}
-    </div>
-)
+    render(){
+        const {article, commentsLoading} = this.props;
+        function getBody({article: {comments = [], id}}){
+            if (commentsLoading) return <Loader />
+            if (!comments.length) return <div> <p>No comments yet</p> </div>
+            return (
+                <div>
+                    <ul>
+                        {comments.map(newId => <li key={newId} ><Comment id = {newId}/></li>)}
+                    </ul>
+                    <CommentForm articleId = {id} />
+                </div>
+            )
+        }
+        return (
+            <div>
+                {getBody({article})}
+            </div>
+        )
     }
 
-function getBody({article: {comments = [], id}}){
-    console.log('comments', comments)
-    return (
-        <div>
-            <ul>
-                {comments.map(newId => <li key={newId} ><Comment id = {newId}/></li>)}
-            </ul>
-            <CommentForm articleId = {id} />
-        </div>
-    )
-}
+    }
+
+
 
 CommentsList.propTypese = {
-    comments: PropTypes.array
+    //from Article, Article from connect
+    comments: PropTypes.array,
+    //from Article, Article from CWRP
+    commentsLoading: PropTypes.bool,
+    commentsLoaded: PropTypes.bool,
+
 }
 
 export default CommentsList;

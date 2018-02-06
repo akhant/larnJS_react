@@ -5,7 +5,9 @@ import toggleOpen from '../../decorators/toggleOpen';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './article.css'
 import {connect } from 'react-redux';
-import {deleteArticle} from "../../AC"
+import {deleteArticle, loadArticle} from "../../AC"
+import Loader from '../Loader';
+import {loadArticleComments} from '../../AC';
 
  class Article extends PureComponent {
      static propTypes = {
@@ -30,15 +32,30 @@ import {deleteArticle} from "../../AC"
          updateIndex: 0
      };
 
+     componentWillReceiveProps({isOpen, loadArticle, article,loadArticleComments}){
+
+         if ( isOpen && !article.text && !article.loading) {
+             loadArticle(article.id)
+         }
+
+         if ( isOpen && !article.commentsLoading && !article.commentsLoaded) {
+             console.log('loadArticleComments')
+             loadArticleComments(article.id)
+         }
+
+     }
+
      handleDelete = () => {
          const { article, deleteArticle} = this.props;
          deleteArticle(article.id)
-
-
      };
 
+
 render(){
-    const {article, isOpen, toggleOpen, isCommentsOpen,toggleComments } = this.props;
+    const {commentsLoading,commentsLoaded, article, isOpen, toggleOpen, isCommentsOpen,toggleComments } = this.props;
+
+if (article.loading) return <Loader />
+
     return (
         <div>
 
@@ -49,16 +66,26 @@ render(){
                                      transitionEnterTimeout={300}
                                      transitionLeaveTimeout={300}
             >
+
                 {isOpen && <section>{article.text}</section> }
 
             {isOpen && (
                 <div>
-                    <button  className='custom_btn' onClick={ toggleComments }>{isCommentsOpen ? 'Hide comments' : 'Show comments'}</button>
+                    <button  className='custom_btn'
+                             onClick={ toggleComments }>{
+                        isCommentsOpen ? 'Hide comments' : 'Show comments'
+                    }
+                    </button>
 
                     {isCommentsOpen && (
                         <div>
                         <h3>Комментарии: </h3>
-                        <CommentsList article={article}  />
+                        <CommentsList
+                            article={article}
+                            commentsLoading={commentsLoading}
+                            commentsLoaded={commentsLoaded}
+
+                        />
                         </div>
                     ) }
 
@@ -70,5 +97,5 @@ render(){
 }
 }
 
-export default connect(null, {deleteArticle})(toggleOpen(Article));
+export default connect(null, {deleteArticle, loadArticle, loadArticleComments})(toggleOpen(Article));
 
