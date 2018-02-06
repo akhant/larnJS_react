@@ -62,7 +62,7 @@ Filters.propTypes = {
 Filters.defaultProps = {};
 
 export default connect(state => ({
-    articles: mapToArr(state.articles),
+    articles: mapToArr(state.articles.entities),
     selected: state.filters.selected,
     range: state.filters.dateRange
 }), {changeSelection, changeDateRange, deleteArticle})(Filters);
