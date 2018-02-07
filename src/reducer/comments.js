@@ -7,7 +7,6 @@ const CommentRecord  = Record({
     id: null,
     text: null,
     user: null
-
 })
 
 const ReducerState = Record({

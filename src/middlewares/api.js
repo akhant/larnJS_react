@@ -12,6 +12,6 @@ setTimeout(() => {
         .then(res => res.json())
         .then(res => next({...rest,type: type + SUCCESS, res}))
         .catch(error => next({...rest, type: type + FAIL, error}))
-}, 1000)
+}, 500)
 
 }

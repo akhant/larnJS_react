@@ -39,7 +39,6 @@ import {loadArticleComments} from '../../AC';
          }
 
          if ( isOpen && !article.commentsLoading && !article.commentsLoaded) {
-             console.log('loadArticleComments')
              loadArticleComments(article.id)
          }
 

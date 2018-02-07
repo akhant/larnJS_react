@@ -61,7 +61,7 @@ export function loadArticle(id){
                     payload: {id, error}
                 }))
 
-        }, 3000)
+        }, 0)
     }
 }
 
