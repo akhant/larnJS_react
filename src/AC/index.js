@@ -1,4 +1,4 @@
-import {LOAD_ARTICLE_COMMENTS,START, SUCCESS, FAIL,LOAD_ARTICLE, DELETE_ARTICLE, INCREMENT, CHANGE_SELECTION, CHANGE_DATE_RANGE, ADD_COMMENT,LOAD_ALL_ARTICLES } from '../constants'
+import {LOAD_COMMENTS_FOR_PAGE, LOAD_ARTICLE_COMMENTS,START, SUCCESS, FAIL,LOAD_ARTICLE, DELETE_ARTICLE, INCREMENT, CHANGE_SELECTION, CHANGE_DATE_RANGE, ADD_COMMENT,LOAD_ALL_ARTICLES } from '../constants'
 
 export function increment(){
     return ({
@@ -71,5 +71,17 @@ export function loadArticleComments(articleId){
         payload: {articleId},
         callAPI: `/api/comment?article=${articleId}`
     })
+}
+
+export function checkAllLoadCommentsForPage(page){
+    return (dispatch, getState) => {
+        const {comments: {pagination}} = getState()
+        if (pagination.getIn([page,'loading']) || pagination.getIn([page, 'ids'])) return;
+        dispatch({
+            type: LOAD_COMMENTS_FOR_PAGE,
+            payload: {page},
+            callAPI: `/api/comment?limit=5&offset=${(page - 1)*5}`
+        })
+    }
 }
 
