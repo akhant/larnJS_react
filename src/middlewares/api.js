@@ -7,11 +7,11 @@ export default store => next => action => {
 
     next({...rest, type: type + START})
 
-setTimeout(() => {
+
     fetch(callAPI)
         .then(res => res.json())
         .then(res => next({...rest,type: type + SUCCESS, res}))
         .catch(error => next({...rest, type: type + FAIL, error}))
-}, 500)
+
 
 }

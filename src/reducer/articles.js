@@ -6,7 +6,7 @@ import { Record, OrderedMap} from 'immutable';
 const ArticleRecord  = Record({
     id: undefined,
     title: '',
-    text: undefined,
+    text: '',
     comments: [],
     loading: false,
     commentsLoading: false,

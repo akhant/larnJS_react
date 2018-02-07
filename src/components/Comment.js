@@ -17,7 +17,7 @@ Comment.propTypes = {
         id: PropTypes.string,
         user: PropTypes.string,
         text: PropTypes.string
-    }).isRequired
+    })
 
 
 }

@@ -9,22 +9,24 @@ import {deleteArticle, loadArticle} from "../../AC"
 import Loader from '../Loader';
 import {loadArticleComments} from '../../AC';
 
+
+
  class Article extends PureComponent {
      static propTypes = {
-        //from ArticleList
+
+         isOpen: PropTypes.bool,
+         toggleOpen: PropTypes.func,
+         id: PropTypes.string,
+
         article: PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
+            id: PropTypes.string,
+            title: PropTypes.string,
             text: PropTypes.string
-        }).isRequired,
-        //from connect
+        }),
         deleteArticle: PropTypes.func,
-         //from toggleOpen
-         isCommentsOpen: PropTypes.bool.isRequired,
-         toggleComments: PropTypes.func.isRequired,
-         //from ArticleList
-         isOpen: PropTypes.bool.isRequired,
-         toggleOpen: PropTypes.func.isRequired
+         isCommentsOpen: PropTypes.bool,
+         toggleComments: PropTypes.func
+
 
     };
 
@@ -32,13 +34,14 @@ import {loadArticleComments} from '../../AC';
          updateIndex: 0
      };
 
-     componentWillReceiveProps({isOpen, loadArticle, article,loadArticleComments}){
-
-         if ( isOpen && !article.text && !article.loading) {
-             loadArticle(article.id)
+     componentDidMount(){
+         const {id, loadArticle, article, loadArticleComments} = this.props
+            console.log(!article.text,!article.loading )
+         if (!article || (!article.text && !article.loading)) {
+             loadArticle(id)
          }
 
-         if ( isOpen && !article.commentsLoading && !article.commentsLoaded) {
+         if ( !article.commentsLoading && !article.commentsLoaded) {
              loadArticleComments(article.id)
          }
 
@@ -96,5 +99,7 @@ if (article.loading) return <Loader />
 }
 }
 
-export default connect(null, {deleteArticle, loadArticle, loadArticleComments})(toggleOpen(Article));
+export default connect((state, ownProps) => ({
+    article: state.articles.entities.get(ownProps.id)
+}), {deleteArticle, loadArticle, loadArticleComments})(toggleOpen(Article));
 
