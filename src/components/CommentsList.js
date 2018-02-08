@@ -29,7 +29,7 @@ class CommentsList extends React.Component  {
         )
     }
 
-    }
+}
 
 
 

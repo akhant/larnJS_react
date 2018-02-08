@@ -10,12 +10,9 @@ class CommentForm extends Component {
         text: ''
     };
 
-
     handleSubmit = e => {
         e.preventDefault()
        this.props.addCom(this.state)
-
-
     }
 
     getClassName = type => this.state[type].length && (this.state[type].length < this.limits[type].min) ? "error_border" : ''
@@ -59,7 +56,6 @@ class CommentForm extends Component {
             </div>
         );
     }
-
 }
 
 CommentForm.propTypes = {

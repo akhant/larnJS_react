@@ -18,8 +18,6 @@ Comment.propTypes = {
         user: PropTypes.string,
         text: PropTypes.string
     })
-
-
 }
 
 const mapStateToProps = () => {

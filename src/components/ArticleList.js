@@ -33,7 +33,6 @@ class ArticleList extends React.Component {
             </div>
         )
     }
-
 };
 
 ArticleList.propTypes = {

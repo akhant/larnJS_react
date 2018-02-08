@@ -7,7 +7,6 @@ class UserForm extends Component {
     handleUserChange = (e) => {
         if (e.target.value.length > 10) return
         this.props.onChange(e.target.value)
-
     }
 
     render() {

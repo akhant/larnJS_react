@@ -32,7 +32,6 @@ export default class App extends Component{
         username
     })
     render(){
-
         return (
             <ConnectedRouter history={history}>
                 <div>

@@ -10,12 +10,10 @@ class CommentsPagination extends Component {
 
     componentWillMount(){
         this.props.checkAllLoadCommentsForPage(this.props.page)
-
     }
 
     componentWillReceiveProps({page, checkAllLoadCommentsForPage}){
         checkAllLoadCommentsForPage(page)
-
     }
     getCommentItems(){
         const {comments,loading} = this.props

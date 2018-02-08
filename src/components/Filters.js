@@ -14,7 +14,6 @@ class Filters extends Component {
 
     handleSelection = selected => {
         this.props.changeSelection(selected.map(option => option.value))
-
     };
 
     handleDayClick = day => {

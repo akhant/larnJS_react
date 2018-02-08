@@ -11,8 +11,4 @@ const enhancer = applyMiddleware(thunk,routerMiddleware(history), randomId, api,
 
 const store =createStore(reducer, {}, enhancer);
 
-
-//dev only
-window.store = store
-
 export default store;

@@ -13,17 +13,15 @@ import {loadArticleComments} from '../../AC';
 
  class Article extends Component {
      static propTypes = {
-
          isOpen: PropTypes.bool,
          toggleOpen: PropTypes.func,
          id: PropTypes.string,
-
-        article: PropTypes.shape({
+         article: PropTypes.shape({
             id: PropTypes.string,
             title: PropTypes.string,
             text: PropTypes.string
-        }),
-        deleteArticle: PropTypes.func,
+         }),
+         deleteArticle: PropTypes.func,
          isCommentsOpen: PropTypes.bool,
          toggleComments: PropTypes.func
     };
@@ -32,7 +30,6 @@ import {loadArticleComments} from '../../AC';
          router: PropTypes.object,
          user: PropTypes.string
      }
-
 
      state = {
          updateIndex: 0
@@ -44,11 +41,9 @@ import {loadArticleComments} from '../../AC';
          if (!article || (!article.text && !article.loading)) {
              loadArticle(id)
          }
-
          if ( !article.commentsLoading && !article.commentsLoaded) {
              loadArticleComments(article.id)
          }
-
      }
 
      handleDelete = () => {
@@ -59,8 +54,7 @@ import {loadArticleComments} from '../../AC';
 
 render(){
     const {commentsLoading,commentsLoaded, article, isOpen, toggleOpen, isCommentsOpen,toggleComments } = this.props;
-
-if (article.loading) return <Loader />
+    if (article.loading) return <Loader />
 
     return (
         <div>
@@ -74,7 +68,6 @@ if (article.loading) return <Loader />
             >
                  <h1>User {this.context.user}</h1>
                 {isOpen && <section>{article.text}</section> }
-
             {isOpen && (
                 <div>
                     <button  className='custom_btn'
@@ -82,7 +75,6 @@ if (article.loading) return <Loader />
                         isCommentsOpen ? 'Hide comments' : 'Show comments'
                     }
                     </button>
-
                     {isCommentsOpen && (
                         <div>
                         <h3>Комментарии: </h3>
@@ -90,11 +82,9 @@ if (article.loading) return <Loader />
                             article={article}
                             commentsLoading={commentsLoading}
                             commentsLoaded={commentsLoaded}
-
                         />
                         </div>
                     ) }
-
                 </div>
             )}
             </ReactCSSTransitionGroup>
