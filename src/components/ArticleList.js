@@ -14,7 +14,6 @@ class ArticleList extends React.Component {
     componentDidMount(){
         const {loaded,loading,loadAllArticles} = this.props;
         if (!loaded || !loading) loadAllArticles();
-
     }
    render(){
         const {articles,  loading} = this.props;
@@ -23,7 +22,6 @@ class ArticleList extends React.Component {
             <NavLink to={`/articles/${article.id}`} activeStyle={{color: 'red'}}>
                 {article.title}
             </NavLink>
-
         </li>);
 
         return (

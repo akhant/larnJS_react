@@ -11,8 +11,6 @@ const ArticleRecord  = Record({
     loading: false,
     commentsLoading: false,
     commentsLoaded: false,
-
-
 })
 const ReducerState = Record({
     loading: false,
@@ -42,6 +40,7 @@ export default (articleState = defaultState, action) => {
                 .set('entities', arrToMap(res,ArticleRecord))
                 .set('loading', false)
                 .set('loaded', true)
+
         case LOAD_ARTICLE+START:
             return articleState.setIn(['entities', payload.id, 'loading'], true)
 

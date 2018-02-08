@@ -1,4 +1,5 @@
 import {LOAD_COMMENTS_FOR_PAGE, LOAD_ARTICLE_COMMENTS,START, SUCCESS, FAIL,LOAD_ARTICLE, DELETE_ARTICLE, INCREMENT, CHANGE_SELECTION, CHANGE_DATE_RANGE, ADD_COMMENT,LOAD_ALL_ARTICLES } from '../constants'
+import { replace} from 'react-router-redux'
 
 export function increment(){
     return ({
@@ -51,16 +52,23 @@ export function loadArticle(id){
 
         setTimeout(() => {
             fetch(`/api/article/${id}`)
-                .then(res => res.json())
+                .then(res => {
+                    if (res.status >= 400){
+                        throw new Error(res.statusText)
+                    }
+                   return res.json()
+                })
                 .then(response => dispatch({
                     type: LOAD_ARTICLE+SUCCESS,
                     payload: {id ,response}
                 }))
-                .catch(error => dispatch({
-                    type: LOAD_ARTICLE + FAIL,
-                    payload: {id, error}
-                }))
-
+                .catch(error => {
+                    dispatch({
+                        type: LOAD_ARTICLE + FAIL,
+                        payload: {id, error}
+                    })
+                    dispatch(replace('/error'))
+                } )
         }, 0)
     }
 }

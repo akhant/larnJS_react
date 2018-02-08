@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 
 class CommentsList extends React.Component  {
 
+
+
     render(){
         const {article, commentsLoading} = this.props;
         function getBody({article: {comments = [], id}}){
@@ -12,6 +14,7 @@ class CommentsList extends React.Component  {
             if (!comments.length) return <div> <p>No comments yet</p> </div>
             return (
                 <div>
+
                     <ul>
                         {comments.map(newId => <li key={newId} ><Comment id = {newId}/></li>)}
                     </ul>
@@ -30,7 +33,7 @@ class CommentsList extends React.Component  {
 
 
 
-CommentsList.propTypese = {
+CommentsList.propTypes = {
     //from Article, Article from connect
     comments: PropTypes.array,
     //from Article, Article from CWRP

@@ -20,7 +20,7 @@ class Articles extends Component {
         return (
             <div>
                 <ArticleList />
-                <Route path="/articles/" children={this.getIndex} exact/>
+                <Route path="/articles" children={this.getIndex} exact/>
                 <Route path="/articles/:id" render={this.getArticle} />
             </div>
         );

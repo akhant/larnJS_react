@@ -4,6 +4,7 @@
 /node_modules
 /.idea
 /simple_api/node_modules
+/public
 
 # testing
 /coverage

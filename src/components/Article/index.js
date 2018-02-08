@@ -1,4 +1,4 @@
-import React , { PureComponent } from 'react';
+import React , { Component } from 'react';
 import CommentsList from './../CommentsList';
 import PropTypes from 'prop-types';
 import toggleOpen from '../../decorators/toggleOpen';
@@ -11,7 +11,7 @@ import {loadArticleComments} from '../../AC';
 
 
 
- class Article extends PureComponent {
+ class Article extends Component {
      static propTypes = {
 
          isOpen: PropTypes.bool,
@@ -26,9 +26,13 @@ import {loadArticleComments} from '../../AC';
         deleteArticle: PropTypes.func,
          isCommentsOpen: PropTypes.bool,
          toggleComments: PropTypes.func
-
-
     };
+     static contextTypes = {
+         store: PropTypes.object,
+         router: PropTypes.object,
+         user: PropTypes.string
+     }
+
 
      state = {
          updateIndex: 0
@@ -68,7 +72,7 @@ if (article.loading) return <Loader />
                                      transitionEnterTimeout={300}
                                      transitionLeaveTimeout={300}
             >
-
+                 <h1>User {this.context.user}</h1>
                 {isOpen && <section>{article.text}</section> }
 
             {isOpen && (
@@ -101,5 +105,5 @@ if (article.loading) return <Loader />
 
 export default connect((state, ownProps) => ({
     article: state.articles.entities.get(ownProps.id)
-}), {deleteArticle, loadArticle, loadArticleComments})(toggleOpen(Article));
+}), {deleteArticle, loadArticle, loadArticleComments},null, {pure: false})(toggleOpen(Article));
 

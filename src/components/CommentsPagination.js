@@ -10,10 +10,12 @@ class CommentsPagination extends Component {
 
     componentWillMount(){
         this.props.checkAllLoadCommentsForPage(this.props.page)
+
     }
 
     componentWillReceiveProps({page, checkAllLoadCommentsForPage}){
         checkAllLoadCommentsForPage(page)
+
     }
     getCommentItems(){
         const {comments,loading} = this.props
@@ -25,6 +27,7 @@ class CommentsPagination extends Component {
     }
 
     getPaginator(){
+        console.log('pagination')
         const {total} = this.props
         const items = []
         for (let i = 1; i <= Math.floor((total-1)/5)+1; i++){
